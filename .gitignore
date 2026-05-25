@@ -1,0 +1,16 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local files
+comunidad.yml
+comunidad.yml.bak
+.streamlit/
+!.streamlit/secrets.toml.example
