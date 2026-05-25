@@ -24,7 +24,22 @@ def randomize_groups(units, num_groups):
 
 def main():
     st.set_page_config(page_title="Grupos Aleatorios", page_icon="🎲")
-    
+
+    # Password Protection
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+
+    if not st.session_state["authenticated"]:
+        st.title("🔐 Acceso Restringido")
+        password_input = st.text_input("Introduce la contraseña para continuar:", type="password")
+        if st.button("Entrar"):
+            if password_input == st.secrets.get("access", {}).get("password"):
+                st.session_state["authenticated"] = True
+                st.rerun()
+            else:
+                st.error("Contraseña incorrecta 😕")
+        return
+
     st.title("🎲 Grupos Aleatorios")
     st.write("Introduce una lista de nombres y el número de grupos para aleatorizarlos.")
     
